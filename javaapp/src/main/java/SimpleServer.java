@@ -1,9 +1,14 @@
 import static spark.Spark.*;
 
 import java.lang.management.ManagementFactory;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.management.*;
 
 public class SimpleServer {
+
+    private static List<byte[]> memoryLeak = new ArrayList<>();
 
     private static String computeIntensiveTask() {
         double result = 0;
@@ -34,6 +39,12 @@ public class SimpleServer {
                 computeIntensiveTask();
             }
             return "Task completed!";
+        });
+
+        get("/register", (req, res) -> {
+            // Reserva 10 MB de memoria y los agrega a la lista
+            memoryLeak.add(new byte[10 * 1024 * 1024]);
+            return "Database Loaded";
         });
 
         // Registra el MBean para exponer métricas a través de JMX
