@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: javasimpleserver
+  labels:
+    app: javasimpleserver
+  annotations:
+    prometheus.io/scrape: "true"
+    prometheus.io/port: "9090"
+    prometheus.io/path: "/metrics"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: javasimpleserver
+  template:
+    metadata:
+      labels:
+        app: javasimpleserver
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "9090"
+        prometheus.io/path: "/metrics"
+    spec:
+      containers:
+      - name: javasimpleserver
+        image: mateobur/javasimpleserver:1.0
+        ports:
+        - containerPort: 8030
+        - containerPort: 9090
+
