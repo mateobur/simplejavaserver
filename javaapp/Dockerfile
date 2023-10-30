@@ -9,5 +9,6 @@ COPY config.yaml /app/config.yaml
 EXPOSE 8030 9010 9090
 
 # Ejecuta la aplicación con jmx_exporter como agente Java
-CMD ["java", "-javaagent:/app/jmx_prometheus_javaagent.jar=9090:/app/config.yaml", "-Dcom.sun.management.jmxremote", "-Dcom.sun.management.jmxremote.port=9010", "-Dcom.sun.management.jmxremote.rmi.port=9010", "-Dcom.sun.management.jmxremote.authenticate=false", "-Dcom.sun.management.jmxremote.ssl=false", "-Djava.rmi.server.hostname=0.0.0.0", "-jar", "/app/javaapp.jar","-Djava.rmi.server.hostname=0.0.0.0"]
+#CMD ["java", "-javaagent:/app/jmx_prometheus_javaagent.jar=9090:/app/config.yaml", "-Dcom.sun.management.jmxremote", "-Dcom.sun.management.jmxremote.port=9010", "-Dcom.sun.management.jmxremote.rmi.port=9010", "-Dcom.sun.management.jmxremote.authenticate=false", "-Dcom.sun.management.jmxremote.ssl=false", "-Djava.rmi.server.hostname=0.0.0.0", "-jar", "/app/javaapp.jar","-Djava.rmi.server.hostname=0.0.0.0"]
+CMD ["java", "-Xms100m", "-Xmx1g", "-javaagent:/app/jmx_prometheus_javaagent.jar=9090:/app/config.yaml", "-Dcom.sun.management.jmxremote", "-Dcom.sun.management.jmxremote.port=9010", "-Dcom.sun.management.jmxremote.rmi.port=9010", "-Dcom.sun.management.jmxremote.authenticate=false", "-Dcom.sun.management.jmxremote.ssl=false", "-Djava.rmi.server.hostname=0.0.0.0", "-jar", "/app/javaapp.jar","-Djava.rmi.server.hostname=0.0.0.0"]
 
