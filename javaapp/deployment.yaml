@@ -24,7 +24,14 @@ spec:
     spec:
       containers:
       - name: javasimpleserver
-        image: mateobur/javasimpleserver:1.0
+        image: mateobur/javasimpleserver:1.2
+        resources:
+          requests:
+            memory: "200Mi"
+            cpu: "200m"
+          limits:
+            memory: "2Gi"
+            cpu: "1000m"
         ports:
         - containerPort: 8030
         - containerPort: 9090
