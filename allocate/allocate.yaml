@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: simple-allocate-deployment
+  namespace: javaserver
   labels:
     app: simple-allocate
 spec:
